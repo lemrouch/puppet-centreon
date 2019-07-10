@@ -30,7 +30,7 @@ then
 fi
 
 # Compute Pollers List
-pollers=`$clapi -a POLLERLIST | head -n -1 | awk '{print $1}'`
+pollers=`$clapi -a POLLERLIST | grep -v -e 'poller_id;name' -e 'Return code end' | cut -f1 -d';'`
 
 case "$1" in
     start|restart)
